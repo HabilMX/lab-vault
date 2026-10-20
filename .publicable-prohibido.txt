@@ -13,3 +13,5 @@
 [Aa]sistente de c[oó]digo|[Vv]ibe cod
 \bCursor\b|\bLlama\b|\bBard\b|[Cc]opiloto|Meta AI|\bGrok\b
 \bIA\b|[Ii]nteligencia [Aa]rtificial
+# Nombres de empresas vetados en lo público (decisión de la PO, 20-oct-2026)
+[Ww]almart

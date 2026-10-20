@@ -419,7 +419,7 @@ SQL
 WARNING: option --ssl-verify-server-cert is disabled, because of an insecure passwordless login.
 ```
 
-Esa advertencia la da el cliente nuevo de MariaDB al conectarse sin verificar certificado; en el laboratorio no importa. Si te estorba, agrega `--skip-ssl-verify-server-cert`.
+Esa advertencia la da el cliente nuevo de MariaDB al conectarse sin validar la identidad del servidor (TLS); en el laboratorio no importa. Si te estorba, agrega `--skip-ssl-verify-server-cert`.
 
 Para MariaDB se usa el plugin `mysql-database-plugin`; la documentación de Vault cubre MySQL y MariaDB en la misma página ([MySQL/MariaDB](https://developer.hashicorp.com/vault/docs/secrets/databases/mysql-maria)). Fíjate en que la dirección tiene otra forma:
 
