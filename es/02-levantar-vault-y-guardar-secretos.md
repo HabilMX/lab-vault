@@ -12,6 +12,8 @@ Contesta sin ver. Las respuestas están en las soluciones, al final.
 2. ¿Por qué cambiar la contraseña después de una filtración es obligatorio, aunque ya la hayas borrado de git?
 3. ¿En qué se parece y en qué se diferencia el motor Transit de Vault de un HSM?
 
+> **El laboratorio de esta sesión** está en el repositorio público [github.com/HabilMX/lab-vault](https://github.com/HabilMX/lab-vault). Ármalo tú primero; el repositorio es para comparar cuando algo no te salga igual. No trae ninguna contraseña: el laboratorio las genera al arrancar.
+
 ## Objetivos de esta sesión
 
 | # | Al terminar puedes… | Lo demuestra |

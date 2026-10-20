@@ -19,6 +19,8 @@ Cada sesión es de unas 2 horas: más o menos una para leer y seguir el ejemplo,
 
 A lo largo de la serie vas a seguir una historia. Es un **escenario**: la empresa y las personas son inventadas. Los datos del mundo real que aparecen dentro de la historia sí son ciertos, y cada uno trae su fuente.
 
+> **El laboratorio del curso** está en el repositorio público [github.com/HabilMX/lab-vault](https://github.com/HabilMX/lab-vault). En esta sesión todavía no lo necesitas: en la sesión 2 lo armas tú, archivo por archivo, y el repositorio te sirve para comparar. No trae ninguna contraseña; el laboratorio las genera al arrancar.
+
 ## Objetivos de esta sesión
 
 Al terminar, vas a poder hacer estas cinco cosas. Al lado de cada una está el ejercicio que la demuestra.

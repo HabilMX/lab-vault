@@ -12,6 +12,8 @@ Contesta sin ver. Las respuestas están en las soluciones.
 2. Rotaste la llave. ¿Qué pasa con los datos que ya estaban cifrados, y qué operación los sube a la versión nueva sin que nadie vea el dato?
 3. ¿Por qué un token que solo puede cifrar es útil para un formulario de alta?
 
+> **El laboratorio de esta sesión** está en el repositorio público [github.com/HabilMX/lab-vault](https://github.com/HabilMX/lab-vault). Ármalo tú primero; el repositorio es para comparar cuando algo no te salga igual. No trae ninguna contraseña: el laboratorio las genera al arrancar.
+
 ## Objetivos de esta sesión
 
 | # | Al terminar puedes… | Lo demuestra |

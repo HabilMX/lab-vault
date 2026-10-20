@@ -12,6 +12,8 @@ Contesta sin ver. Las respuestas están en las soluciones.
 2. Un token recibe 403. ¿Cuáles son dos causas posibles, y qué ruta de Vault te dice qué puede hacer ese token?
 3. Si alguien roba la bitácora de auditoría, ¿se lleva las contraseñas? ¿Por qué?
 
+> **El laboratorio de esta sesión** está en el repositorio público [github.com/HabilMX/lab-vault](https://github.com/HabilMX/lab-vault). Ármalo tú primero; el repositorio es para comparar cuando algo no te salga igual. No trae ninguna contraseña: el laboratorio las genera al arrancar.
+
 ## Objetivos de esta sesión
 
 | # | Al terminar puedes… | Lo demuestra |
