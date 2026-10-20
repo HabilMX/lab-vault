@@ -231,7 +231,30 @@ Lo que sí existe: **Vault Enterprise**, la versión de pago, puede usar un HSM 
 
 **Sobre la licencia.** Vault fue software libre con licencia MPL 2.0 durante años. El 10 de agosto de 2023, HashiCorp anunció que sus versiones nuevas pasaban a la **Business Source License (BSL) 1.1** ([anuncio de HashiCorp](https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license)). En corto: puedes usar Vault gratis en tu empresa, pero hay límites si quieres ofrecer un producto que compita con HashiCorp. En febrero de 2025, IBM terminó de comprar HashiCorp ([comunicado de IBM](https://newsroom.ibm.com/2025-02-27-ibm-completes-acquisition-of-hashicorp,-creates-comprehensive,-end-to-end-hybrid-cloud-platform)).
 
-Como respuesta al cambio de licencia, una parte de la comunidad tomó el último código abierto y siguió por su lado: **OpenBao**, que hoy es un proyecto de la OpenSSF, dentro de la Linux Foundation, con licencia MPL 2.0 ([openbao.org](https://openbao.org/)). A eso se le llama un *fork*, una bifurcación: como cuando una receta familiar se divide y cada rama de la familia la sigue haciendo a su modo. Casi todo lo que aprendas en esta serie te sirve también en OpenBao, pero en esta serie no lo probamos.
+Como respuesta al cambio de licencia, una parte de la comunidad tomó el último código abierto y siguió por su lado: **OpenBao**, que hoy es un proyecto de la OpenSSF, dentro de la Linux Foundation, con licencia MPL 2.0 ([openbao.org](https://openbao.org/)). A eso se le llama un *fork*, una bifurcación: como cuando una receta familiar se divide y cada rama de la familia la sigue haciendo a su modo. Casi todo lo que aprendas en esta serie te sirve también en OpenBao; el recuadro de abajo dice qué cambia.
+
+> **Vault y OpenBao: la misma caja fuerte, dos dueños**
+>
+> OpenBao arrancó del último Vault con licencia libre, la 1.14: la BSL cubre «Vault Version 1.15.0 or later» ([licencia de Vault](https://github.com/hashicorp/vault/blob/main/LICENSE)). Desde ahí cada uno sigue su camino:
+>
+> | | HashiCorp Vault | OpenBao |
+> |---|---|---|
+> | Licencia | BSL 1.1: permite el uso interno y en producción; restringe ofrecerlo como producto que compita con la oferta de pago de IBM | MPL 2.0, libre ([licencia de OpenBao](https://github.com/openbao/openbao/blob/main/LICENSE)) |
+> | Quién lo cuida | IBM, dueña de HashiCorp | La comunidad, como proyecto de la OpenSSF, dentro de la Linux Foundation ([openbao.org](https://openbao.org/)) |
+> | Comando | `vault` | `bao` |
+> | Variables | `VAULT_ADDR`, `VAULT_TOKEN` | `BAO_ADDR`, `BAO_TOKEN`; si no están, lee las `VAULT_` ([comandos](https://openbao.org/docs/commands/)) |
+> | Imagen | `hashicorp/vault` | `openbao/openbao`, en Docker Hub, Quay y el registro de contenedores de GitHub ([instalación](https://openbao.org/docs/install/)); al 20 de octubre de 2026, la más reciente es la 2.7.1, del 1 de octubre ([versiones](https://github.com/openbao/openbao/releases)) |
+> | Espacios separados por empresa (*namespaces*) | Solo en la versión de pago ([Vault](https://developer.hashicorp.com/vault/docs/enterprise/namespaces)) | Incluidos desde la 2.3, de 2025 ([OpenBao](https://openbao.org/docs/concepts/namespaces/)) |
+>
+> En Hábil elegimos OpenBao, la versión libre, para cifrar los documentos de nuestros sistemas: una API compatible, licencia abierta y sin depender de un solo proveedor.
+>
+> Esta serie usa la imagen oficial de HashiCorp Vault 2.2.0, que es con la que se probó cada comando. En OpenBao, las llamadas con `curl` no cambian: las rutas empiezan con `/v1/` y el token viaja en el mismo encabezado `X-Vault-Token` ([API de OpenBao](https://openbao.org/docs/api/)). Los comandos cambian `vault` por `bao`. Pero cambiar nombres no basta, por tres detalles:
+>
+> - El laboratorio guarda los datos con `storage "file"`, y OpenBao 2.7 quitó esa opción ([notas de la 2.7.0](https://github.com/openbao/openbao/blob/main/CHANGELOG.md)); ahí se usa otra, como el almacenamiento integrado `raft` ([almacenamiento](https://openbao.org/docs/configuration/storage/)).
+> - Dentro del contenedor, las carpetas son `/openbao/config`, `/openbao/file` y `/openbao/logs`, no `/vault/...` ([Dockerfile de OpenBao](https://github.com/openbao/openbao/blob/main/Dockerfile)).
+> - Hoy los tokens empiezan con `s.`, `b.` o `r.`, no con `hvs.`; OpenBao avisa que ese formato puede cambiar, así que no construyas nada que dependa del prefijo ([tokens](https://openbao.org/docs/concepts/tokens/)): la búsqueda de `hvs.` que verás más adelante no los encontraría.
+>
+> El laboratorio no lo corrimos con OpenBao.
 
 ---
 

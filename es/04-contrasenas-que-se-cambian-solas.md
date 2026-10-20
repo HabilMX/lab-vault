@@ -640,6 +640,8 @@ Cuando termines, regresa al token root: `export VAULT_TOKEN=$(jq -r .root_token 
 > - para las **pruebas**, una versión que guarda todo en memoria y se borra al terminar;
 > - para **producción**, un adaptador que llama a Transit con una llave por empresa (`transit/encrypt/empresa-a`, `transit/encrypt/empresa-b`), o a un servicio de llaves de una nube.
 >
+> Ese proveedor puede ser HashiCorp Vault u OpenBao, su versión libre, que tiene un motor Transit compatible ([Transit en OpenBao](https://openbao.org/docs/secrets/transit/)); en Hábil elegimos OpenBao.
+>
 > El resto del sistema nunca sabe cuál de los dos está conectado. Así se puede probar todo sin levantar Vault, y cambiar de proveedor sin reescribir el programa. Fíjate en lo que **no** hace: el programa nunca toca la llave. Pide «sella» y «abre», y la llave se queda en Vault, como viste con `curl` en la sesión 3.
 
 ---
