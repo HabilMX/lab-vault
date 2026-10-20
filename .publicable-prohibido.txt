@@ -15,3 +15,15 @@
 \bIA\b|[Ii]nteligencia [Aa]rtificial
 # Nombres de empresas vetados en lo público (decisión de la PO, 20-oct-2026)
 [Ww]almart
+
+# --- certificaciones: solo el uso COMERCIAL (decision de la PO, 20-oct-2026) ---
+# 🔴 El termino TECNICO pasa a proposito: «certificado TLS», «autoridad
+# certificadora», «certificate», `--cert` y x509 son correctos en un curso y vetarlos
+# pondria en rojo material legitimo. Medido ese dia: las 9 apariciones de curso-go y
+# las 2 de typescript son todas tecnicas, y ninguna de estas tres lineas las toca.
+# ⚠️ LIMITE DECLARADO: estos patrones cubren ESPANOL. «certification» (fr) y
+# «certificacao» (pt) no se vetan, porque el glosario de traducciones los usa como
+# termino tecnico; si la PO quiere los cinco idiomas, se amplia con su control positivo.
+[Cc]ertificaci[oó]n(es)?
+[Cc]ertificad[oa]s? (ISO|SOC|PCI|CMMI|ITIL|CKA|CKAD|AWS|Azure|GCP|[0-9]{4,5})
+(estamos|somos|est[aá]|est[aá]n|son|empresa|equipo|personal|ingenieros?|consultores?)[[:space:]]+certificad[oa]s?
