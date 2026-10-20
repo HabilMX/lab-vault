@@ -1,0 +1,15 @@
+# Patrones que NO pueden salir a internet. Este material es PÚBLICO.
+# Una línea por patrón (regex extendida). Las líneas con # son comentarios.
+# El pipeline falla si alguno aparece en un archivo .md. `python verificar.py --revisar-md` aplica esta misma lista.
+# Esta lista está hecha para CRECER: si encuentras algo, agrégalo aquí.
+#
+# Diferencia con el curso de tensores: este curso NO enseña inteligencia artificial, así que aquí
+# «IA» e «inteligencia artificial» sí están prohibidas (0 usos en el material, medido el 20-oct-2026).
+# Si algún día el curso necesita mencionarlas como tema, se quita la línea con una nota, no se hace una excepción.
+[Cc]odex|[Cc]laude|ChatGPT|OpenAI|Anthropic|Copilot|Gemini|DeepSeek|Mistral|Perplexity
+\bLLMs?\b
+\bGPT-?[0-9o]|\bGPT\b
+[Mm]odelos? de lenguaje|[Gg]randes modelos
+[Aa]sistente de c[oó]digo|[Vv]ibe cod
+\bCursor\b|\bLlama\b|\bBard\b|[Cc]opiloto|Meta AI|\bGrok\b
+\bIA\b|[Ii]nteligencia [Aa]rtificial

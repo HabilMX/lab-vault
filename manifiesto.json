@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "nota": "Los archivos del laboratorio que verificar.py exige. Un .hcl en politicas/ o un .json en roles/ que no esté aquí hace fallar la comprobación 1: todo archivo nuevo del laboratorio entra a esta lista para que se revise.",
+  "archivos": [
+    {"ruta": "compose.yaml", "que_es": "los tres servicios: Vault 2.2.0, PostgreSQL 17.11 y MariaDB 11.8.8", "sesion": 2},
+    {"ruta": "iniciar.sh", "que_es": "guion de arranque que falla cerrado y genera .env con contraseñas al azar", "sesion": 2},
+    {"ruta": ".env.ejemplo", "que_es": "las variables de .env, sin ningún valor secreto", "sesion": 2},
+    {"ruta": ".gitignore", "que_es": "lo que el laboratorio genera y nunca se sube", "sesion": 2},
+    {"ruta": "vault/config/vault.hcl", "que_es": "Vault en modo servidor, sin TLS porque es un laboratorio", "sesion": 2},
+    {"ruta": "politicas/lectura-tienda.hcl", "que_es": "solo leer los secretos de la tienda", "sesion": 2},
+    {"ruta": "politicas/solo-cifrar-curp.hcl", "que_es": "cifrar CURP sin poder descifrarlas", "sesion": 3},
+    {"ruta": "politicas/app-python.hcl", "que_es": "pedir usuarios temporales y descifrar CURP", "sesion": 4},
+    {"ruta": "roles/lector-postgres.json", "que_es": "rol de credenciales dinámicas de solo lectura en PostgreSQL", "sesion": 4},
+    {"ruta": "roles/lector-mariadb.json", "que_es": "rol de credenciales dinámicas de solo lectura en MariaDB", "sesion": 4},
+    {"ruta": "python/clientes.py", "que_es": "el programa de Python que se conecta sin conocer ninguna contraseña", "sesion": 4}
+  ]
+}

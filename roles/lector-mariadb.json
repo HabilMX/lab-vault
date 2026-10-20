@@ -1,0 +1,9 @@
+{
+  "db_name": "mariadb",
+  "creation_statements": [
+    "CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';",
+    "GRANT SELECT ON tienda.* TO '{{name}}'@'%';"
+  ],
+  "default_ttl": "2m",
+  "max_ttl": "10m"
+}

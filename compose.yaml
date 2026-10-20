@@ -1,0 +1,42 @@
+name: lab-vault-educacion
+
+services:
+  vault:
+    image: hashicorp/vault:2.2.0
+    command: server
+    environment:
+      VAULT_ADDR: http://127.0.0.1:8200   # para usar el comando vault dentro del contenedor
+    user: "${LOCAL_UID:?corre primero ./iniciar.sh}:${LOCAL_GID:?corre primero ./iniciar.sh}"   # tu usuario: así Vault puede escribir en las carpetas montadas
+    ports:
+      - "127.0.0.1:${PUERTO_VAULT:?falta .env, corre ./iniciar.sh}:8200"
+    volumes:
+      - ./vault/config:/vault/config
+      - ./vault/data:/vault/file
+      - ./vault/logs:/vault/logs
+    networks: [lab]
+
+  postgres:
+    image: postgres:17.11
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?falta .env, corre ./iniciar.sh}
+      POSTGRES_DB: tienda
+    ports:
+      - "127.0.0.1:${PUERTO_POSTGRES:?falta .env, corre ./iniciar.sh}:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    networks: [lab]
+
+  mariadb:
+    image: mariadb:11.8.8
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?falta .env, corre ./iniciar.sh}
+      MARIADB_DATABASE: tienda
+    ports:
+      - "127.0.0.1:${PUERTO_MARIADB:?falta .env, corre ./iniciar.sh}:3306"
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    networks: [lab]
+
+networks:
+  lab:

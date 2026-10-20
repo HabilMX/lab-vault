@@ -1,0 +1,7 @@
+# Lo que el laboratorio genera al arrancar. NADA de esto se sube a git.
+.env
+secretos-locales/
+vault/data/
+vault/logs/
+postgres/
+mariadb/

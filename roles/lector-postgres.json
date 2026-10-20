@@ -1,0 +1,13 @@
+{
+  "db_name": "postgres",
+  "creation_statements": [
+    "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
+    "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"
+  ],
+  "revocation_statements": [
+    "REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM \"{{name}}\";",
+    "DROP ROLE IF EXISTS \"{{name}}\";"
+  ],
+  "default_ttl": "2m",
+  "max_ttl": "10m"
+}
