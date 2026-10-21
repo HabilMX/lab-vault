@@ -106,4 +106,4 @@ python3 verificar.py --revisar-secretos # tokens, llaves y contraseñas escritas
 
 ## Licencia
 
-Pendiente: la decide Hábil.
+El material del laboratorio y el código tienen cada uno su licencia; los términos completos están en `LICENSE.md`.
