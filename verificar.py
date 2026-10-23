@@ -28,8 +28,10 @@ Las comprobaciones, en orden:
 6. python/clientes.py compila (python -m py_compile; el caché va a una carpeta temporal).
 7. Ningún archivo trae secretos (los patrones de SECRETOS, más: en .env.ejemplo ninguna variable
    de contraseña, token o llave tiene valor).
-8. Ningún título de un .md lleva emoji, y ningún archivo de texto trae palabras vetadas; en los
-   .md tampoco los patrones de .publicable-prohibido.txt.
+8. Ningún título de un .md lleva emoji, y ningún archivo de texto trae palabras vetadas. Los
+   patrones de .publicable-prohibido.txt NO se revisan aquí: esa lista no se publica
+   (export-ignore), así que este guion, que sí viaja y corre en el CI público, no puede depender
+   de ella. Esa revisión es previa a publicar y vive en verificar-publicable.sh, que tampoco viaja.
 
 Lo que el laboratorio genera al arrancar (.env, secretos-locales/, vault/data/, vault/logs/,
 postgres/, mariadb/) no se revisa: está en .gitignore y nunca se publica. Que siga en .gitignore
@@ -318,13 +320,6 @@ def revisar_secretos(raiz):
     return problemas
 
 
-def prohibidos_publicables(raiz):
-    p = raiz / ".publicable-prohibido.txt"
-    if not p.is_file():
-        return None
-    return [re.compile(l.strip()) for l in leer(p).splitlines() if l.strip() and not l.strip().startswith("#")]
-
-
 def revisar_md(raiz):
     problemas = []
     for p in archivos_de_texto(raiz, {".md"}, set()):
@@ -341,15 +336,6 @@ def revisar_md(raiz):
             for n, linea in enumerate(texto.split("\n"), 1):
                 if patron.search(linea):
                     problemas.append(f"{p.relative_to(raiz)}:{n}: palabra vetada")
-    patrones = prohibidos_publicables(raiz)
-    if patrones is None:
-        problemas.append("falta .publicable-prohibido.txt")
-    else:
-        for p in archivos_de_texto(raiz, {".md"}, set()):
-            for n, linea in enumerate(leer(p).split("\n"), 1):
-                for patron in patrones:
-                    if patron.search(linea):
-                        problemas.append(f"{p.relative_to(raiz)}:{n}: patrón no publicable ({patron.pattern})")
     return problemas
 
 
@@ -453,9 +439,7 @@ def autoprueba():
         caso("10. python/clientes.py que no compila", "python/clientes.py", lambda t: t + "\ndef roto(:\n", "python")
         caso("11. un emoji en un título de .md", "es/README.md",
              lambda t: t.replace("## Las cuatro sesiones", "## Las cuatro sesiones \U0001F510", 1), "md")
-        caso("12. una palabra de .publicable-prohibido.txt en un .md", "README.md",
-             lambda t: t + "\nHecho con intel" + "igencia arti" + "ficial.\n", "md")
-        caso("13. un archivo del manifiesto que falta", "manifiesto.json",
+        caso("12. un archivo del manifiesto que falta", "manifiesto.json",
              lambda t: t.replace('"ruta": "compose.yaml"', '"ruta": "compose-que-no-existe.yaml"'), "manifiesto")
 
         print("  Copia sin tocar:")

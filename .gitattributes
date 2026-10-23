@@ -6,6 +6,7 @@
 
 # La lista de patrones internos se queda en GitLab: deletrea nombres internos y el
 # revisor no puede revisarse a si mismo (se excluye para no cazarse siempre).
+.publicable-prohibido.txt export-ignore
 .publicable-interno.txt export-ignore
 
 # El guion de esa revision tampoco viaja: alla no puede correr -su lista interna no
