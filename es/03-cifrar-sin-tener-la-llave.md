@@ -111,6 +111,8 @@ Si apagaste el laboratorio, préndelo, abre el sello y exporta el token, como en
 docker compose start
 set -a; source .env; set +a
 export VAULT_ADDR=http://127.0.0.1:$PUERTO_VAULT
+until curl -fsS -o /dev/null "$VAULT_ADDR/v1/sys/seal-status"; do echo "Espero a que Vault inicie..."; sleep 1; done
+until docker compose exec -T postgres pg_isready -h 127.0.0.1 -U postgres -q; do echo "Espero a que PostgreSQL inicie..."; sleep 1; done
 for i in 0 1 2; do
   LLAVE=$(jq -r ".keys[$i]" secretos-locales/init.json)
   curl -s -X PUT $VAULT_ADDR/v1/sys/unseal -d "{\"key\": \"$LLAVE\"}" | jq -c '{sealed, progress}'

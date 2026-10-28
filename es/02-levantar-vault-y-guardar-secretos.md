@@ -481,12 +481,15 @@ Prueba que se sella solo al reiniciar:
 
 ```
 $ docker compose restart vault
+$ until curl -fsS -o /dev/null "$VAULT_ADDR/v1/sys/seal-status"; do echo "Espero a que Vault inicie..."; sleep 1; done
 $ curl -s $VAULT_ADDR/v1/sys/seal-status | jq "{sealed, progress}"
 {
   "sealed": true,
   "progress": 0
 }
 ```
+
+**Espera a que Vault escuche antes de seguir.** `docker compose restart` regresa en cuanto el contenedor arranca, pero Vault tarda un instante en abrir el puerto. Si le hablas antes, `curl -s` no responde nada y, en el ciclo de abajo, las primeras llaves se pierden sin aviso. Por eso va el mismo `until` del inicio.
 
 Así va a estar cada vez que prendas tu computadora o reinicies el contenedor. Para no escribir tres veces lo mismo, ábrelo con un ciclo:
 
@@ -891,7 +894,7 @@ Las soluciones están al final.
 
 **Cómo compruebas:** antes de correr el guion, `ls -a` no debe mostrar ningún `.env`. Después, debe decir `ALTO: .gitignore no tiene la regla '.env'.`, salir con código 1 (compruébalo con `echo $?` justo después) y **no** crear el archivo `.env` (compruébalo con `ls -a`).
 
-**Ejercicio 7 — Los mayordomos.** Reinicia Vault con `docker compose restart vault`. Ábrelo usando las llaves 4 y 5 (`.keys[3]` y `.keys[4]`) y después la 1.
+**Ejercicio 7 — Los mayordomos.** Reinicia Vault con `docker compose restart vault` y espera a que escuche, con el mismo `until` de arriba. Ábrelo usando las llaves 4 y 5 (`.keys[3]` y `.keys[4]`) y después la 1.
 
 a) ¿Importa cuáles tres llaves uses?
 b) ¿Qué ves en `progress` después de la segunda llave?
